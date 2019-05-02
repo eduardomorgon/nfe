@@ -11,6 +11,9 @@ public class NFNotaInfoLocal extends DFBase {
 
     @Element(name = "CNPJ", required = false)
     private String cnpj;
+    
+    @Element(name = "xNome", required = false)
+    private String nome;
 
     @Element(name = "CPF", required = false)
     private String cpf;
@@ -35,6 +38,24 @@ public class NFNotaInfoLocal extends DFBase {
 
     @Element(name = "UF", required = true)
     private String uf;
+    
+    @Element(name = "CEP", required = false)
+    private String cep;
+    
+    @Element(name = "cPais", required = false)
+    private String codigoPais;
+    
+    @Element(name = "xPais", required = false)
+    private String nomePais;
+    
+    @Element(name = "fone", required = false)
+    private String telefone;
+    
+    @Element(name = "email", required = false)
+    private String email;
+    
+    @Element(name = "IE", required = false)
+    private String inscricaoEstadual;
 
     public void setCnpj(final String cnpj) {
         if (this.cpf != null) {
@@ -52,6 +73,11 @@ public class NFNotaInfoLocal extends DFBase {
         this.cpf = cpf;
     }
 
+    public void setNome(String nome) {
+        StringValidador.tamanho60(nome, "Razão Social ou Nome do Expedidor Local");
+        this.nome = nome;
+    }
+    
     public void setLogradouro(final String logradouro) {
         StringValidador.tamanho60(logradouro, "Logradouro Local");
         this.logradouro = logradouro;
@@ -86,10 +112,44 @@ public class NFNotaInfoLocal extends DFBase {
         this.uf = uf.getCodigo();
     }
 
+    public void setCep(String cep) {
+        StringValidador.exatamente8N(cep, "Código do CEP Local");
+        this.cep = cep;
+    }
+
+    public void setCodigoPais(String pais) {
+        StringValidador.exatamente4N(pais, "Código do País Local");
+        this.codigoPais = pais;
+    }
+
+    public void setNomePais(String nomePais) {
+        StringValidador.tamanho2ate60(nomePais, "Nome do País Local");
+        this.nomePais = nomePais;
+    }
+
+    public void setTelefone(String telefone) {
+        StringValidador.telefone(telefone, "Telefone Local");
+        this.telefone = telefone;
+    }
+
+    public void setEmail(String email) {
+        StringValidador.email(telefone, "E-mail Local");
+        this.email = email;
+    }
+
+    public void setInscricaoEstadual(String inscricaoEstadual) {
+        StringValidador.inscricaoEstadual(inscricaoEstadual);
+        this.inscricaoEstadual = inscricaoEstadual;
+    }
+    
     public String getCnpj() {
         return this.cnpj;
     }
 
+    public String getNome() {
+        return this.nome;
+    }
+    
     public String getCpf() {
         return this.cpf;
     }
@@ -121,4 +181,29 @@ public class NFNotaInfoLocal extends DFBase {
     public String getUf() {
         return this.uf;
     }
+
+    public String getCep() {
+        return this.cep;
+    }
+
+    public String getCodigoPais() {
+        return codigoPais;
+    }
+
+    public String getNomePais() {
+        return nomePais;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getInscricaoEstadual() {
+        return inscricaoEstadual;
+    }
+
 }
